@@ -11,10 +11,15 @@
     background: #C4C4C4; /*Gray-White: Dropdown box*/
 }
 
-.h1 {
+.h1, .h2 {
     color: #D34C4C; /*Red: Header Text*/
 }
 
-.btn {
+a, .btn {
     color: #E8E1E1; /*White: Text*/
+}
+
+.box {
+    background-color: #444A7B;
+    border-radius: 10px;
 }
