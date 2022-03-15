@@ -1,0 +1,20 @@
+﻿body {
+    background: #696969; /* nice-gray: Background */
+    color:      #E8E1E1;
+}
+
+.navbar {
+    background: #A14646; /* red: Navbar */
+}
+
+.dropdown-menu {
+    background: #C4C4C4; /*Gray-White: Dropdown box*/
+}
+
+.h1 {
+    color: #D34C4C; /*Red: Header Text*/
+}
+
+.btn {
+    color: #E8E1E1; /*White: Text*/
+}
