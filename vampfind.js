@@ -218,7 +218,7 @@ function calculateSum() {
     sum +=2;
   }
 
-  if(document.getElementById("accentNo").checked){
+  if(document.getElementById("accentYes").checked){
     sum +=2;
   }
 
