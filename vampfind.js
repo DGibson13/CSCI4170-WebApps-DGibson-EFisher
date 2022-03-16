@@ -24,9 +24,9 @@ var classmates = {
 
              },
              {
-							 "name": "Brice Williams",
-							 "method": "JSON Data",
-							 "isVampire": "Yes"
+				 "name": "Brice Williams",
+				 "method": "JSON Data",
+				 "isVampire": "Yes"
              },
              {
 							 "name": "Peter McCallister",
@@ -69,16 +69,15 @@ function showResults(){
 
 	if(sum > 6){
 		document.getElementById("replace").innerHTML="A Vampire!";
-		document.getElementById("result_image").src="src/vampire.png";
+		
 		isVampire =true;
 		vampires +=1;
 		addToChart();
 		createTableRow(name, "Threshold");
-	} else if(sum === null) {
-    window.alert("Must fill out form");
+	} else if(sum === null) {    
   } else {
 		document.getElementById("replace").innerHTML="Not A Vampire!";
-		document.getElementById("result_image").src="src/human.jpg";
+		
 		isVampire = false;
 		humans +=1;
 		addToChart();
@@ -89,7 +88,7 @@ function showResults(){
 
 //called for random results
 function randomGuess() {
-	var div = document.getElementById("namespace");
+	var div = document.getElementById("rando");
 	var ask = document.createElement("p");
 	var input = document.createElement("input");
 	var enter = document.createElement("button");
@@ -100,7 +99,7 @@ function randomGuess() {
 	enter.setAttribute("id", "enter");
 	document.getElementById("replace").
 		innerHTML="------------------------------";
-	document.getElementById("result_image").src="src/question_mark.jpeg";
+	
 
 
 	div.appendChild(ask);
@@ -120,7 +119,7 @@ function getRandom() {
 
 	if(num % 2 != 0){
 		document.getElementById("replace").innerHTML="A Vampire!";
-		document.getElementById("result_image").src="src/vampire.png";
+		
 		isVampire = true;
 		vampires +=1;
 		addToChart();
@@ -128,7 +127,7 @@ function getRandom() {
 	}
 	else {
 		document.getElementById("replace").innerHTML="Not A Vampire!";
-		document.getElementById("result_image").src="src/human.jpg";
+		
 		isVampire = false;
 		humans +=1;
 		addToChart();
@@ -143,7 +142,7 @@ function getRandomInt(max) {
 
 // creates a row in the table
 function createTableRow(name, method) {
-	var table = document.getElementById("vampire_table");
+	var table = document.getElementById("vampireTable");
 	var row_count = table.rows.length;
 	var row = table.insertRow(row_count);
 	var cell1 = row.insertCell(0);
@@ -154,10 +153,10 @@ function createTableRow(name, method) {
 	cell2.innerText = method;
 
 	if(isVampire == true){
-		cell3.innerHTML = "<img src='src/vampire_icon.jpg' width = '30' />";
+		cell3.innerHTML = "Vampire";
 	}
 	else {
-		cell3.innerHTML = "<img src='src/human.jpg' width='30'/>";
+		cell3.innerHTML = "Human";
 	}
 }
 
@@ -179,7 +178,7 @@ function drawChart() {
                     'height':300};
 
     // Instantiate and draw our chart, passing in some options.
-    chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+    chart = new google.visualization.PieChart(document.getElementById('pieChart'));
     chart.draw(data, options);
 }
 
@@ -195,8 +194,8 @@ function addToChart() {
 function reset(){
 	document.getElementById("replace").
 		innerHTML="------------------------------";
-	document.getElementById("result_image").src="src/question_mark.jpeg";
-	var table = document.getElementById("vampire_table");
+	
+	var table = document.getElementById("vampireTable");
 	humans = 0;
 	vampires =0;
 	addToChart();
@@ -208,23 +207,23 @@ function reset(){
 
 function calculateSum() {
   var sum = 0;
-  var name = document.getElementById("inputName").value;
-  var shadowInput = document.getElementById("shadowYes").value;
-  var garlicInput = document.getElementById("garlicYes").value;
-  var paleInput = document.getElementById("slider").value;
-  var yes = /yes/i;
-  var no = /no/i;
+  var name = document.getElementById("studentName").value;
+  
 
-  if(shadowInput == shadowInput.match(no)){
+  if(document.getElementById("shadowNo").checked){
     sum += 4;
   }
 
-  if(garlicInput == garlicInput.match(yes)){
-    sum +=3;
+  if(document.getElementById("garlicYes").checked){
+    sum +=2;
   }
 
-  if(paleInput == paleInput.match(yes)) {
-    sum +=3;
+  if(document.getElementById("accentNo").checked){
+    sum +=2;
+  }
+
+  if(document.getElementById("slider").value >= 6){
+	sum +=2;
   }
 
   if (typeof(Storage) !== "undefined") {
