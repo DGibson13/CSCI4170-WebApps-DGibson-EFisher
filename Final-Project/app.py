@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
-#from flask.ext.sqlalchemy import SQLAlchemy
+import sqlalchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/questlog'
-#db = SQLAlchemy(app)
+db = sqlalchemy(app)
 
 
 @app.route('/')
