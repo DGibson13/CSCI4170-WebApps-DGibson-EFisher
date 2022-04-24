@@ -3,17 +3,17 @@ import psycopg2
 
 conn = psycopg2.connect(
         host="localhost",
-        database="flask_db",
-        user=os.environ['postgres'],
-        password=os.environ['password'])
+        database="questlog",
+        user='postgres',
+        password='password')
         
         
 # Open a cursor to perform database operations
 cur = conn.cursor()
 
 # Execute a command: this creates a new table
-cur.execute('DROP TABLE IF EXISTS books;')
-cur.execute('CREATE TABLE books (id serial PRIMARY KEY,'
+cur.execute('DROP TABLE IF EXISTS games;')
+cur.execute('CREATE TABLE games (id serial PRIMARY KEY,'
                                  'title varchar (150) NOT NULL,'
                                  'author varchar (50) NOT NULL,'
                                  'pages_num integer NOT NULL,'
