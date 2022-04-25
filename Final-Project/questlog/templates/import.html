@@ -27,13 +27,17 @@
             <input type="text" class="form-control" id="hoursInput" placeholder="empty">
             <label for="hoursInput">Hours played</label>
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="playingInput" placeholder="empty">
-            <label for="playingInput">Currently playing or finished?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="playingInput" id="playingInput0" checked>
+            <label class="form-check-label" for="playingInput0">Not played</label>
         </div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="notesInput" placeholder="empty">
-            <label for="notesInput">Any notes or comments for yourself about this game?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="playingInput" id="playingInput1">
+            <label class="form-check-label" for="playingInput1">Currently playing</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="playingInput" id="playingInput2">
+            <label class="form-check-label" for="playingInput2">Finished</label>
         </div>
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>

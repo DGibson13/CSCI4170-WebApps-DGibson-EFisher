@@ -23,6 +23,6 @@ a, .btn {
     background-color: #444A7B;
     border-radius: 10px;
 }
-.box {
+.box, .form-check {
     color:      #E8E1E1;
 }
