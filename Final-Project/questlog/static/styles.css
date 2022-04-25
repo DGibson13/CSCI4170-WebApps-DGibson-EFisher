@@ -1,6 +1,6 @@
 ﻿body {
     background: #696969; /* nice-gray: Background */
-    color:      #E8E1E1;
+    /*color:      #E8E1E1;*/
 }
 
 .navbar {
@@ -19,7 +19,10 @@ a, .btn {
     color: #E8E1E1; /*White: Text*/
 }
 
-.box {
+.box, .form-box {
     background-color: #444A7B;
     border-radius: 10px;
+}
+.box {
+    color:      #E8E1E1;
 }
