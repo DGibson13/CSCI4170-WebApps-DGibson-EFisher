@@ -27,6 +27,14 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/')
     def index():
-        return render_template('base.html')
+        return render_template('index.html')
+
+    @app.route('/about')
+    def about():
+        return render_template('about.html')
+
+    @app.route('/import')
+    def importform():
+        return render_template('import.html')
 
     return app
