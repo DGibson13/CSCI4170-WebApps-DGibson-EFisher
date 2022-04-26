@@ -12,31 +12,31 @@
 <div class="container mt-3 form-box">
     <form class="py-3" method="post">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="titleInput" placeholder="empty">
+            <input type="text" class="form-control" id="titleInput" placeholder="empty" name="title" value="{{ request.form['title'] }}">
             <label for="titleInput">Title</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="imageURLInput" placeholder="empty">
+            <input type="text" class="form-control" id="imageURLInput" placeholder="empty" name="logo" value="{{ request.form['logo'] }}">
             <label for="imageURLInput">Image url (optional)</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="genreInput" placeholder="empty">
+            <input type="text" class="form-control" id="genreInput" placeholder="empty" name="genre" value="{{ request.form['genre'] }}">
             <label for="genreInput">Genre</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="hoursInput" placeholder="empty">
+            <input type="text" class="form-control" id="hoursInput" placeholder="empty" name="hours" value="{{ request.form['hours'] }}">
             <label for="hoursInput">Hours played</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="playingInput" id="playingInput0" checked>
+            <input class="form-check-input" type="radio" name="playing" id="playingInput0" value="0" checked>
             <label class="form-check-label" for="playingInput0">Not played</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="playingInput" id="playingInput1">
+            <input class="form-check-input" type="radio" name="playing" id="playingInput1" value="1">
             <label class="form-check-label" for="playingInput1">Currently playing</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="playingInput" id="playingInput2">
+            <input class="form-check-input" type="radio" name="playing" id="playingInput2" value="2">
             <label class="form-check-label" for="playingInput2">Finished</label>
         </div>
         <input class="btn btn-primary" type="submit" value="Submit">

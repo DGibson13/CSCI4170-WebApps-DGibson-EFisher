@@ -29,9 +29,19 @@
         <tr>
             <th scope="row">{{game[0]}}</th>
             {% if game[1] == 0 %}
-                <td>Yes</td>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="fav">
+                        <label class="form-check-label" for="fav">Favorite</label>
+                    </div>
+                </td>
             {% else %}
-                <td>No</td>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="fav" checked>
+                        <label class="form-check-label" for="fav">Favorite</label>
+                    </div>
+                </td>
             {% endif %}            
             <td><img src="{{game[2]}}" class="img-thumbnail" width="200" height="200"></td>
             <td>{{game[3]}}</td>
@@ -43,7 +53,7 @@
             {% else %}
                 <td>Completed</td>
             {% endif %}            
-            <td>{{game[6]}}</td>
+            <td class="col-12">{{game[6]}}</td>            
         </tr>
         {% endfor %}
     </tbody>    
