@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-3 box">
+<div class="container col-6 mt-3 box">
     <p class="h1 text-center pt-1">Welcome to Questlog!</p>
     <div class="row justify-content-center">
         <p class="col-6 text-center">
@@ -9,13 +9,48 @@
         </p>
     </div>
 </div>
-<!-- Test code for db connection -->
-{% for game in games %}
-<div>
-    <h1>{{game[0]}}</h1>
-    <h1>{{game[1]}}</h1>
-    <h1>{{game[2]}}</h1>
+
+{% if games %}
+<div class="container-lg mt-3">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Favorite</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Hours</th>
+            <th scope="col">Completion</th>
+            <th scope="col">Notes</th>
+        </tr>
+    </thead>    
+    <tbody>
+        {% for game in games %}
+        <tr>
+            <th scope="row">{{game[0]}}</th>
+            {% if game[1] == 0 %}
+                <td>Yes</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}            
+            <td><img src="{{game[2]}}" class="img-thumbnail" width="200" height="200"></td>
+            <td>{{game[3]}}</td>
+            <td>{{game[4]}}</td>
+            {% if game[5] == 0 %}
+                <td>Not played</td>
+            {% elif game[5] == 1 %}
+                <td>Playing</td>
+            {% else %}
+                <td>Completed</td>
+            {% endif %}            
+            <td>{{game[6]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>    
+</table>
 </div>
-{% endfor %}
+{% else %}
+    <h1>There are no games saved!</h1>
+{% endif %}
 
 {% endblock %}
