@@ -1,33 +1,31 @@
 import os
-
+import psycopg2
 from flask import Flask, render_template
 
 
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'questlog.sqlite'),
-    )
+def create_app(test_config=None):    
+    app = Flask(__name__)
 
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    def get_db_connection():
+        conn = psycopg2.connect("dbname=questlog user=postgres password=password")
+        return conn
 
     # a simple page that says hello
     @app.route('/')
     def index():
-        return render_template('index.html')
+        # Test db code, final code should be in their own functions
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute('DROP TABLE IF EXISTS games')
+        cur.execute("CREATE TABLE games (title varchar PRIMARY KEY, favorite integer, logo varchar, genre varchar, hours integer, completion integer, notes varchar)")
+        cur.execute("INSERT INTO games (title, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s)",('Elden Ring', 'logo.com', 'RPG', 250, 0))        
+        cur.execute("SELECT * FROM games WHERE title = %s", ('Elden Ring',))
+        games = cur.fetchall()
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        return render_template('index.html', games=games)
 
     @app.route('/about')
     def about():
