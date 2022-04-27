@@ -1,4 +1,3 @@
-from lib2to3.pgen2.pgen import generate_grammar
 import os
 import psycopg2
 from flask import Flask, render_template, request, flash, redirect
