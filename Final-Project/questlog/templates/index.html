@@ -26,24 +26,19 @@
     </thead>    
     <tbody>
         {% for game in games %}
-        <form>
+        <form method="POST" action="/update">
             <tr>
-                <th class="col-6" scope="row" name="title" value="{{ request.form[game[0]] }}">{{game[0]}}</th>
-                {% if game[1] == 0 %}
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="favorite" value="{{ request.form['favorite'] }}" id="fav">
-                            <label class="form-check-label" for="fav">Favorite</label>
-                        </div>
-                    </td>
-                {% else %}
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="favorite" value="{{ request.form['favorite'] }}" id="fav" checked>
-                            <label class="form-check-label" for="fav">Favorite</label>
-                        </div>
-                    </td>
-                {% endif %}            
+                <th class="col-4" scope="row">
+                    {{game[0]}}
+                    <input type="hidden" name="title" value="{{game[0]}}">
+                </th>                
+                <td>
+                    <div class="form-check">
+                        <!--<input type="hidden" name="favorite" value="0">-->
+                        <input class="form-check-input" type="checkbox" name="favorite" value="1" id="fav" {{"checked" if game[1] == 1 else ""}}>
+                        <label class="form-check-label" for="fav">Favorite</label>
+                    </div>
+                </td>
                 <td><img src="{{game[2]}}" class="img-thumbnail" width="200" height="200"></td>
                 <td>{{game[3]}}</td>
                 <td>{{game[4]}}</td>
@@ -60,7 +55,7 @@
             </tr>
             <tr>
                 <td class="form-floating" colspan="7">                
-                    <textarea class="form-control" placeholder="empty" id="notesArea" name="notes" value="{{ request.form['notes'] }}">{{game[6]}}</textarea>
+                    <textarea class="form-control" placeholder="empty" id="notesArea" name="notes" value="{{ request.form['notes'] }}" style="height: 100px">{{game[6]}}</textarea>
                     <label for="notesArea">Notes</label>
                 </td>
             </tr>
