@@ -11,6 +11,7 @@ def create_app(test_config=None):
         conn = psycopg2.connect("dbname=questlog user=postgres password=password")
         return conn    
 
+    #Test table populated with example entries
     def reset_test_table():
         conn = get_db_connection()
         cur = conn.cursor()
@@ -25,8 +26,8 @@ def create_app(test_config=None):
         return
 
     @app.route('/', methods=["GET"])
-    def index():
-        #Test table populated with example entries
+    def index():        
+        #Run reset_test_table() once to populate with test data, comment it out and run again to avoid overwriting database
         #reset_test_table()
 
         conn = get_db_connection()
