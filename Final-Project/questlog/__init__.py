@@ -9,27 +9,24 @@ def create_app(test_config=None):
 
     def get_db_connection():
         conn = psycopg2.connect("dbname=questlog user=postgres password=password")
-        return conn
-
-    def insert_into_table(cur, conn):
-        pass
+        return conn    
 
     def reset_test_table():
         conn = get_db_connection()
         cur = conn.cursor()
         cur.execute("DROP TABLE IF EXISTS games")       
         cur.execute("CREATE TABLE IF NOT EXISTS games (title varchar PRIMARY KEY NOT NULL, favorite integer DEFAULT 0, logo varchar, genre varchar, hours integer, completion integer, notes varchar)")
-        cur.execute("INSERT INTO games (title, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s)",('Elden Ring', 'https://quiviracoalition.org/wp-content/uploads/2019/02/generic-person-icon.png', 'RPG', 250, 0))
-        cur.execute("INSERT INTO games (title, favorite, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s, %s)",('Dark Souls', 0, 'logo.com', 'RPG', 250, 1))
-        cur.execute("INSERT INTO games (title, favorite, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s, %s)",('Donkey Kong', 1, 'logo.com', 'RPG', 250, 2))
+        cur.execute("INSERT INTO games (title, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s)",('Elden Ring', 'https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/capsule_616x353.jpg?t=1649774637', 'RPG', 250, 0))
+        cur.execute("INSERT INTO games (title, favorite, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s, %s)",('Dark Souls', 0, 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Dark_Souls_Cover_Art.jpg/220px-Dark_Souls_Cover_Art.jpg', 'RPG', 250, 1))
+        cur.execute("INSERT INTO games (title, favorite, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s, %s)",('Donkey Kong', 1, 'https://upload.wikimedia.org/wikipedia/en/c/c1/Dkc_snes_boxart.jpg', 'RPG', 250, 2))
         conn.commit()
         cur.close()
         conn.close()
         return
 
-    # a simple page that says hello
     @app.route('/', methods=["GET"])
     def index():
+        #Test table populated with example entries
         #reset_test_table()
 
         conn = get_db_connection()
@@ -61,7 +58,7 @@ def create_app(test_config=None):
             completion = request.form['playing']
 
             if logo is None:
-                logo = "url_for('static', filename='noimage.png')"
+                logo = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
 
            
             cur.execute("INSERT INTO games (title, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s)",(title, logo, genre, hours, completion))
@@ -93,6 +90,8 @@ def create_app(test_config=None):
         conn.close()
         return redirect('/')
 
+
+    # SORT FUNCTIONS BEGIN
     @app.route('/sortTitle', methods=["GET"])
     def sortTitle():
         conn = get_db_connection()
@@ -157,5 +156,6 @@ def create_app(test_config=None):
         conn.close()
 
         return render_template('index.html', games=games)
+    # SORT FUNCTIONS END
 
     return app
