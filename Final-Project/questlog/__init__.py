@@ -27,7 +27,7 @@ def create_app(test_config=None):
         return
 
     # a simple page that says hello
-    @app.route('/')
+    @app.route('/', methods=('GET', 'POST'))
     def index():
         #test_insert_into_table()
 
@@ -37,6 +37,15 @@ def create_app(test_config=None):
         
         cur.execute("SELECT * FROM games")
         games = cur.fetchall()
+
+        if request.method == 'POST':
+            title = request.form['title']
+            favorite = request.form['favorite']
+            notes = request.form['notes']
+
+            cur.execute("SELECT * FROM games WHERE title = %s", (title))
+            cur.execute("INSERT INTO games (favorite, notes) VALUES (%s, %s)", (favorite, notes,))
+            conn.commit()
 
         cur.close()
         conn.close()

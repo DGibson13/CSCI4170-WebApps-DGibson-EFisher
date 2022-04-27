@@ -26,35 +26,45 @@
     </thead>    
     <tbody>
         {% for game in games %}
-        <tr>
-            <th scope="row">{{game[0]}}</th>
-            {% if game[1] == 0 %}
+        <form>
+            <tr>
+                <th class="col-6" scope="row" name="title" value="{{ request.form[game[0]] }}">{{game[0]}}</th>
+                {% if game[1] == 0 %}
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="favorite" value="{{ request.form['favorite'] }}" id="fav">
+                            <label class="form-check-label" for="fav">Favorite</label>
+                        </div>
+                    </td>
+                {% else %}
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="favorite" value="{{ request.form['favorite'] }}" id="fav" checked>
+                            <label class="form-check-label" for="fav">Favorite</label>
+                        </div>
+                    </td>
+                {% endif %}            
+                <td><img src="{{game[2]}}" class="img-thumbnail" width="200" height="200"></td>
+                <td>{{game[3]}}</td>
+                <td>{{game[4]}}</td>
+                {% if game[5] == 0 %}
+                    <td>Not played</td>
+                {% elif game[5] == 1 %}
+                    <td>Playing</td>
+                {% else %}
+                    <td>Completed</td>
+                {% endif %}
                 <td>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="fav">
-                        <label class="form-check-label" for="fav">Favorite</label>
-                    </div>
+                    <input class="btn btn-primary" type="submit" value="Update {{game[0]}}">
+                </td>            
+            </tr>
+            <tr>
+                <td class="form-floating" colspan="7">                
+                    <textarea class="form-control" placeholder="empty" id="notesArea" name="notes" value="{{ request.form['notes'] }}">{{game[6]}}</textarea>
+                    <label for="notesArea">Notes</label>
                 </td>
-            {% else %}
-                <td>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="fav" checked>
-                        <label class="form-check-label" for="fav">Favorite</label>
-                    </div>
-                </td>
-            {% endif %}            
-            <td><img src="{{game[2]}}" class="img-thumbnail" width="200" height="200"></td>
-            <td>{{game[3]}}</td>
-            <td>{{game[4]}}</td>
-            {% if game[5] == 0 %}
-                <td>Not played</td>
-            {% elif game[5] == 1 %}
-                <td>Playing</td>
-            {% else %}
-                <td>Completed</td>
-            {% endif %}            
-            <td class="col-12">{{game[6]}}</td>            
-        </tr>
+            </tr>
+        </form>
         {% endfor %}
     </tbody>    
 </table>
