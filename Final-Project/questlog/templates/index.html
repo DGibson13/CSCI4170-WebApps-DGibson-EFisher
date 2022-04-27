@@ -11,8 +11,8 @@
 </div>
 
 {% if games %}
-<div class="container-lg mt-3">
-    <div class="form-floating col-3">                
+<div class="container-lg mt-3 box">
+    <div class="form-floating pt-3 col-3">                
         <button class="btn btn-secondary dropdown-toggle" type="button" id="sortby" data-bs-toggle="dropdown">Sort By</button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" method="GET" href="/sortTitle">Title</a></li>
@@ -52,7 +52,7 @@
                     <td>{{game[3]}}</td>
                     <td>{{game[4]}}</td>
                     {% if game[5] == 1 %}
-                        <td>Playing</td>
+                        <td>Currently Playing</td>
                     {% elif game[5] == 2 %}
                         <td>Completed</td>
                     {% else %}
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <td class="form-floating" colspan="7">                
-                        <textarea class="form-control" placeholder="empty" id="notesArea" name="notes" value="{{ request.form['notes'] }}" style="height: 100px">{{game[6]}}</textarea>
+                        <textarea class="form-control text-light bg-secondary" placeholder="empty" id="notesArea" name="notes" value="{{ request.form['notes'] }}" style="height: 100px">{{game[6]}}</textarea>
                         <label for="notesArea">Notes</label>
                     </td>
                 </tr>

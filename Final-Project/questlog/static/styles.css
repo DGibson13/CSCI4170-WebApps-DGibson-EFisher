@@ -1,6 +1,5 @@
 ﻿body {
-    background: #696969; /* nice-gray: Background */
-    /*color:      #E8E1E1;*/
+    background: #696969; /* nice-gray: Background */    
 }
 
 .navbar {
@@ -19,10 +18,14 @@ a, .btn {
     color: #E8E1E1; /*White: Text*/
 }
 
-.box, .form-box {
+.box {
     background-color: #444A7B;
     border-radius: 10px;
 }
 .box, .form-check {
+    color:      #E8E1E1;
+}
+
+.table th, tr {
     color:      #E8E1E1;
 }

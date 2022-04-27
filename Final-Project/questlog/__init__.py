@@ -57,12 +57,11 @@ def create_app(test_config=None):
             hours = request.form['hours']
             completion = request.form['playing']
 
-            if logo is None:
+            if logo is '':
                 logo = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
 
            
-            cur.execute("INSERT INTO games (title, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s)",(title, logo, genre, hours, completion))
-            #cur.execute("INSERT INTO games (title, logo, genre, hours) VALUES (%s, %s, %s, %s)",(title, logo, genre, hours))
+            cur.execute("INSERT INTO games (title, logo, genre, hours, completion) VALUES (%s, %s, %s, %s, %s)",(title, logo, genre, hours, completion))            
             conn.commit()
 
             cur.close()
@@ -123,7 +122,7 @@ def create_app(test_config=None):
         conn = get_db_connection()
         cur = conn.cursor()        
 
-        cur.execute("SELECT * FROM games ORDER BY hours ASC")
+        cur.execute("SELECT * FROM games ORDER BY hours DESC")
         games = cur.fetchall()
 
         cur.close()

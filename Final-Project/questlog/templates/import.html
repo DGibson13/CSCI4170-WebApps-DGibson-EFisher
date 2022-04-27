@@ -9,22 +9,22 @@
         </p>
     </div>
 </div>
-<div class="container mt-3 form-box">
+<div class="container mt-3 box">
     <form class="py-3" method="POST">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="titleInput" placeholder="empty" name="title" value="{{ request.form['title'] }}" required>
+            <input type="text" class="form-control text-light bg-secondary" id="titleInput" placeholder="empty" name="title" value="{{ request.form['title'] }}" required>
             <label for="titleInput">Title</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="imageURLInput" placeholder="empty" name="logo" value="{{ request.form['logo'] }}">
+            <input type="text" class="form-control text-light bg-secondary" id="imageURLInput" placeholder="empty" name="logo" value="{{ request.form['logo'] }}">
             <label for="imageURLInput">Image url (optional)</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="genreInput" placeholder="empty" name="genre" value="{{ request.form['genre'] }}" required>
+            <input type="text" class="form-control text-light bg-secondary" id="genreInput" placeholder="empty" name="genre" value="{{ request.form['genre'] }}" required>
             <label for="genreInput">Genre</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="hoursInput" placeholder="empty" name="hours" value="{{ request.form['hours'] }}" required>
+            <input type="text" class="form-control text-light bg-secondary" id="hoursInput" placeholder="empty" name="hours" value="{{ request.form['hours'] }}" required>
             <label for="hoursInput">Hours played</label>
         </div>
         <div class="form-check">
